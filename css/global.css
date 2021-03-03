@@ -1,0 +1,52 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+:root {
+    --white:#fff;
+    --white-background: #F2F3F5;
+    --dark-background: #262626;
+    --dark2-background: #1F1B24;
+    --black-background: #121212;
+    --gray-line: #DCDDE0;
+    --text: #dfdfdf;
+    --text-highlight: #B3B9FF;
+    --title: #2E384D;
+    --red: #E83F5B;
+    --green: #4CD62B;
+    --blue: #5965e0;
+    --blue-dark: #4953B8;
+    --blue-twitter: #2AA9E0;
+}
+
+body {
+    background: var(--black-background);
+    color: var(--text);
+}
+
+@media(max-width: 1080px) {
+    html{
+        font-size: 93.75%;
+    }
+}
+
+@media(max-width: 720px) {
+    html{
+        font-size: 80.5%;
+    }
+}
+
+@media(max-width: 320px) {
+    html{
+        font-size: 70%
+    }
+}
+
+.geral-container {
+    height: 100%;
+    width: 100%;
+    display: inline;
+}
