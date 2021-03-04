@@ -39,10 +39,12 @@ header button {
 .body-container {
     height: 50rem;
     width: 100%;
+    align-self: center;
+    align-content: center;
     align-items: center;
     text-align: center;
-    
 }
+
 
 .div-title {
     text-align: center;
@@ -61,6 +63,7 @@ header button {
 .player-content {
     width: 100%;
     height: 30rem;
+    padding-top: 12rem;
 }
 
 .wallpaper-player {
@@ -119,4 +122,54 @@ header button {
     margin-top: 1rem;
     width: 25rem;
     height: 4rem;
+}
+
+/* Contents */
+
+.div-information{
+    height: 50rem;
+    width: 100%;
+    margin-top: 20rem;
+    background-image: linear-gradient(to bottom, #121212 0%, #1F1B24 100%);
+}
+
+.div-h1-information {
+    padding-top: 12rem;
+}
+
+.h1-information {
+    font-family: arial;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.h2-information {
+    padding-top: 3rem;
+    font-size: 1.5rem;
+    font-family: arial;
+    font-weight: 700;
+}
+
+.div-madeby {
+    background-image: linear-gradient(to bottom, #1F1B24 0%, #121212 100%);
+}
+
+.h3-madeby {
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    font-family: arial;
+    font-weight: 700;
+}
+
+.div-information-icons {
+    padding-top: 2rem;
+    align-items: center;
+    align-content: center;
+    vertical-align: center;
+}
+
+.information-icon {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
 }
