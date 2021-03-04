@@ -81,5 +81,27 @@ function nextSound() {
 }
 
 function previousSound() {
-    actualSound -= 1;
+
+    if (actualSound === 0){
+        actualSound = arrayContent.length - 1;
+        console.log(actualSound)
+    }
+    else {
+        actualSound -= 1;
+        console.log(actualSound)
+    }
+    
+    /* Função para trocar o wallpaper do player */ 
+    var wallpaperImg = document.getElementById("wallpaperImg");
+    var currentWallpaper = "public/img/" + arrayContent[actualSound][0];
+    
+    wallpaperImg.src = ""
+    wallpaperImg.src = currentWallpaper
+
+    /* Função para trocar o audio em execução no player */
+    var playerAudio = document.getElementById("audioControl");
+    var currentAudio = "public/sounds/" + arrayContent[actualSound][1];
+
+    playerAudio.src = "";
+    playerAudio.src = currentAudio;
 }
