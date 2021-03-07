@@ -5,10 +5,22 @@ var actualSound = 0;
 var maxNumSound = arrayContent.length - 1;
 
 $(document).ready(function(){
-
     playerGenerator();
+    registerServiceWorker();
     console.log(maxNumSound)
 });
+
+async function registerServiceWorker() { //responsavel por registrar e chamar o service worker 
+    if ('serviceWorker' in navigator) {
+        try{
+            await navigator.serviceWorker.register("../sw.js")
+            console.log("Server Worker registrated.")
+        }
+        catch(e) {
+            console.log("Service Worker registration failed.")
+        }
+    }
+}
 
 function playerGenerator() {
 
@@ -20,16 +32,16 @@ function playerGenerator() {
     content += "<img src='public/img/" + arrayContent[actualSound][0] + "'" + " class='wallpaper-player' alt='Wallpaper' id='wallpaperImg'>"
     content += "</div>"
 
-    content += "<audio controls id='audioControl' class='audio-control' src='public/sounds/" + arrayContent[actualSound][1] + "'>"
+    content += "<audio controls id='audioControl' onclick='playAudiobar()' class='audio-control' preload='auto' loop='true' src='public/sounds/" + arrayContent[actualSound][1] + "'>"
     /*content += "<source src='public/sounds/" + arrayContent[actualSound][1] + "' id='srcAudio' type='audio/mpeg'>"*/
     content += "Seu navegador não suporta stream/arquivos de audio. Por favor tente com outro navegador."
     content += "</audio>"
 
     content += "<div class='player-buttons'>"
 
-    content += "<button class='back-button' onclick='previousSound()'><img src='public/img/back_button.png' alt='Back' class='back-button'></button>"
-    content += "<button class='play-button' onclick='playSound()'><img src='public/img/play_button.png' alt='Play/Pause' class='play-button' id='playButtonImg'></button>"
-    content += "<button class='next-button' onclick='nextSound()'><img src='public/img/next_button.png' alt='Next' class='next-button'></button>"
+    content += "<button class='back-button' onclick='previousSound()' title='Previous'><img src='public/img/back_button.png' alt='Back' class='back-button'></button>"
+    content += "<button class='play-button' onclick='playSound()' title='Play/Pause'><img src='public/img/play_button.png' alt='Play/Pause' class='play-button' id='playButtonImg'></button>"
+    content += "<button class='next-button' onclick='nextSound()' title='Next'><img src='public/img/next_button.png' alt='Next' class='next-button'></button>"
 
     content += "</div>"
         
@@ -42,6 +54,23 @@ function playSound() { /* Responsável pelo botão de play/pause */
 
     var sound = document.getElementById("audioControl");
     var img = document.getElementById("playButtonImg");
+
+    /*
+    if (sound.duration > 0 && !sound.paused) {
+
+        soundActive = false;
+        sound.pause();
+        img.src = "public/img/play_button.png";
+
+    } else {
+
+        sound.play();
+        soundActive = true;
+        img.src = "public/img/pause_button.png";
+
+    }
+    */
+    
     
     if (soundActive === false){
         sound.play();
@@ -54,6 +83,10 @@ function playSound() { /* Responsável pelo botão de play/pause */
         img.src = "public/img/play_button.png";
     }
     
+}
+
+function playAudiobar() {
+    console.log("audiobar")
 }
 
 function nextSound() {
@@ -78,6 +111,11 @@ function nextSound() {
 
     playerAudio.src = "";
     playerAudio.src = currentAudio;
+
+    /* Função para trocar o estilo do botão de play/pause quando um novo audio é carregado */ 
+    var img = document.getElementById("playButtonImg");
+    soundActive = false;
+    img.src = "public/img/play_button.png";
 }
 
 function previousSound() {
@@ -104,4 +142,10 @@ function previousSound() {
 
     playerAudio.src = "";
     playerAudio.src = currentAudio;
+
+    /* Função para trocar o estilo do botão de play/pause quando um novo audio é carregado */ 
+    var img = document.getElementById("playButtonImg");
+    soundActive = false;
+    img.src = "public/img/play_button.png";
+
 }

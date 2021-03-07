@@ -1,0 +1,16 @@
+{
+  "short_name": "SleepSounds",
+  "name": "Sleep Sounds",
+  "start_url": ".",
+  "display": "standalone",
+  "theme-color": "#ffffff",
+  "background-color": "#121212",
+  "description": "PWA sound reproducer App",
+  "icons": [
+    {
+      "src": "public/logo.jpg",
+      "type": "image/jpg",
+      "sizes": "3000x3000"
+    }
+  ]
+}
