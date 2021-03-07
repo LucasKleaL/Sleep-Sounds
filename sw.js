@@ -10,6 +10,7 @@ self.addEventListener("install", function(event) {
                 "./css/home.css",
                 "./js/jquery-3.5.1.js",
                 "./js/homeScript.js",
+                "./public/logo.png",
                 "./public/img/back_button.png",
                 "./public/img/next_button.png",
                 "./public/img/play_button.png",

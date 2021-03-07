@@ -6,21 +6,9 @@ var maxNumSound = arrayContent.length - 1;
 
 $(document).ready(function(){
     playerGenerator();
-    registerServiceWorker();
     console.log(maxNumSound)
 });
 
-async function registerServiceWorker() { //responsavel por registrar e chamar o service worker 
-    if ('serviceWorker' in navigator) {
-        try{
-            await navigator.serviceWorker.register("../sw.js")
-            console.log("Server Worker registrated.")
-        }
-        catch(e) {
-            console.log("Service Worker registration failed.")
-        }
-    }
-}
 
 function playerGenerator() {
 

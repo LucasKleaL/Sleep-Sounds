@@ -8,9 +8,9 @@
   "description": "PWA sound reproducer App",
   "icons": [
     {
-      "src": "public/logo.jpg",
-      "type": "image/jpg",
-      "sizes": "3000x3000"
+      "src": "public/logo_512px.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
