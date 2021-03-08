@@ -43,20 +43,23 @@ self.addEventListener("activate", evt => {
 
 self.addEventListener("fetch", evt => {
 
-    if (!(evt.request.url.indexOf('http') === 0)) return;
-
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
-                return caches.open(cacheName).then(cache => {
-                    cache.put(evt.request.url, fetchRes.clone());
-                    limitCacheSize(cacheName, 75);
-                    return fetchRes;
-                })
-            });
-        })
-        .catch(() => caches.match("/fallback"))
-    );
+    if (!(evt.request.url.indexOf('http') === 0)) {
+        return;
+    } 
+    else {
+        evt.respondWith(
+            caches.match(evt.request).then(cacheRes => {
+                return cacheRes || fetch(evt.request).then(fetchRes => {
+                    return caches.open(dynamicNames).then(cache => {
+                        cache.put(evt.request.url, fetchRes.clone());
+                        limitCacheSize(dynamicNames, 75);
+                        return fetchRes;
+                    })
+                });
+            })
+            .catch(() => caches.match("/fallback"))
+        );
+    }
 });
 
 //cache size limit function
