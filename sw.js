@@ -42,18 +42,26 @@ self.addEventListener("fetch", function(evt) {
     );
 });
 
+function precache() {
+    return caches.open(cacheName).then(function(cache) {
+        return cache.addAll([
+            "./",
+        ]);
+    });
+}
+
 function fromCache(request) {
-    return caches.open(cacheName).then(function (cache) {
-        return cache.match(request);
+    return caches.open(cacheName).then(function(cache) {
+        return cache.match(request).then(function(mathing) {
+            return mathing || Promise.reject("no-match");
+        });
     });
 }
 
 function update(request) {
     return caches.open(cacheName).then(function (cache) {
         return fetch(request).then(function(response) {
-            return cache.put(request, response.clone()).then(function() {
-                return response;
-            });
+            return cache.put(request, response);
         });
     });
 }
