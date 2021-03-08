@@ -1,9 +1,10 @@
-const cacheName = "pwa-cache"
 
-self.addEventListener("install", function(event) {
-    event.waitUntil(
-        caches.open(cacheName).then(function(cache) {
-            cache.addAll([
+ const cacheName = "pwa-cache";
+
+self.addEventListener("install", e => {
+    e.waitUntil(
+        caches.open(cacheName).then(cache => {
+            return cache.addAll([
                 "./",
                 "./index.html",
                 "./css/global.css",
@@ -27,43 +28,49 @@ self.addEventListener("install", function(event) {
             ])
         })
     )
-    return self.skipWaiting();
 })
 
-self.addEventListener("activate", e =>{
-    self.clients.claim();
-})
+self.addEventListener("fetch", function(evt) {
+    console.log("Service worker is serving the asset");
 
-self.addEventListener("fetch", async e =>{
-    const req = e.resquest;
-    const url = new URL(req.url);
+    evt.respondWith(fromCache(evt.request));
 
-    if(url.login === location.origin){
-        e.respondWith(cacheFirst(req));
-    }
-    else {
-        e.respondWith(networkAndCache(req))
-    }
-})
+    evt.waitUntil(
+        update(evt.request)
 
-async function cacheFirst(req) {
-    const cache = await caches.open(cacheName);
-    const cached = await cache.match(req);
+        .then(refresh)
+    );
+});
 
-    return cached || fetch(req);
+function fromCache(request) {
+    return caches.open(cacheName).then(function (cache) {
+        return cache.match(request);
+    });
 }
 
-async function networkAndCache(req) {
-    const cache = await caches.open(cacheName);
-
-    try {
-        const refresh = await fetch(req);
-        await cache.put(req, refresh.clone());
-        return refresh;
-    }
-    catch(e) {
-        const cached = await cache.match(req);
-        return cached;
-    }
+function update(request) {
+    return caches.open(cacheName).then(function (cache) {
+        return fetch(request).then(function(responce) {
+            return cache.put(request, response.clone()).then(function() {
+                return response;
+            });
+        });
+    });
 }
+
+function refresh(response) {
+    return self.clients.matchAll().then(function (clients) {
+        clients.forEach(function (client) {
+
+            var message = {
+                type: "refresh",
+                url: response.url,
+
+                eTag: response.headers.get("ETag")
+            };
+
+            client.postMessage(JSON.stringify(message));
+        });
+    });
+};
                 
