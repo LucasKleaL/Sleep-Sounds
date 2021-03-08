@@ -50,7 +50,7 @@ function fromCache(request) {
 
 function update(request) {
     return caches.open(cacheName).then(function (cache) {
-        return fetch(request).then(function(responce) {
+        return fetch(request).then(function(response) {
             return cache.put(request, response.clone()).then(function() {
                 return response;
             });
