@@ -35,11 +35,7 @@ self.addEventListener("fetch", function(evt) {
 
     evt.respondWith(fromCache(evt.request));
 
-    evt.waitUntil(
-        update(evt.request)
-
-        .then(refresh)
-    );
+    evt.waitUntil(update(evt.request));
 });
 
 function precache() {
