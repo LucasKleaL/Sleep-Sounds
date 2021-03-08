@@ -20,7 +20,7 @@ function playerGenerator() {
     content += "<img src='public/img/" + arrayContent[actualSound][0] + "'" + " class='wallpaper-player' alt='Wallpaper' id='wallpaperImg'>"
     content += "</div>"
 
-    content += "<audio controls id='audioControl' onclick='playAudiobar()' class='audio-control' preload='auto' loop='true' src='public/sounds/" + arrayContent[actualSound][1] + "'>"
+    content += "<audio controls id='audioControl' onclick='playAudiobar()' crossOrigin='anonymous' class='audio-control' preload='auto' loop='true' src='public/sounds/" + arrayContent[actualSound][1] + "'>"
     /*content += "<source src='public/sounds/" + arrayContent[actualSound][1] + "' id='srcAudio' type='audio/mpeg'>"*/
     content += "Seu navegador não suporta stream/arquivos de audio. Por favor tente com outro navegador."
     content += "</audio>"
