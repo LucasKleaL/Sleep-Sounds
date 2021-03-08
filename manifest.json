@@ -1,11 +1,11 @@
 {
-  "short_name": "SleepSounds",
+  "short_name": "Sleep Sounds",
   "name": "Sleep Sounds",
   "start_url": ".",
   "display": "standalone",
   "theme-color": "#ffffff",
   "background-color": "#121212",
-  "description": "PWA sound reproducer App",
+  "description": "PWA audio reproducer app",
   "icons": [
     {
       "src": "public/logo_512px.png",

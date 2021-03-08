@@ -1,6 +1,5 @@
 $(document).ready(function(){
     registerServiceWorker();
-
 })
 
 async function registerServiceWorker() { //responsavel por registrar e chamar o service worker 
