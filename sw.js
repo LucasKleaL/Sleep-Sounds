@@ -57,20 +57,4 @@ function update(request) {
         });
     });
 }
-
-function refresh(response) {
-    return self.clients.matchAll().then(function (clients) {
-        clients.forEach(function (client) {
-
-            var message = {
-                type: "refresh",
-                url: response.url,
-
-                eTag: response.headers.get("ETag")
-            };
-
-            client.postMessage(JSON.stringify(message));
-        });
-    });
-};
-                
+         
