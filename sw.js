@@ -1,7 +1,7 @@
 
  const cacheName = "pwa-cache";
 
-self.addEventListener("install", e => {
+self.addEventListener("install", evt => {
     e.waitUntil(
         caches.open(cacheName).then(cache => {
             return cache.addAll([
@@ -30,35 +30,27 @@ self.addEventListener("install", e => {
     )
 })
 
-self.addEventListener("fetch", function(evt) {
-    console.log("Service worker is serving the asset");
+self.addEventListener("activate", evt => {
+    evt.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(keys
+                .filter(key => key !== staticCacheName)
+                .map(key => caches.delete(key))
+            )
+        })
+    )
+})
 
-    evt.respondWith(fromCache(evt.request));
-
-    evt.waitUntil(update(evt.request));
+self.addEventListener("fetch", evt => {
+    evt.respondWith(
+        caches.match(evt.request).then(cacheRes => {
+            return cacheRes || fetch(evt.request).then(fetchRes => {
+                return caches.open(dynamicCache).then(cache => {
+                    cache.put(evt.request.url, fetchRes.clone());
+                    return fetchRes
+                })
+            });
+        })
+    );
 });
-
-function precache() {
-    return caches.open(cacheName).then(function(cache) {
-        return cache.addAll([
-            "./",
-        ]);
-    });
-}
-
-function fromCache(request) {
-    return caches.open(cacheName).then(function(cache) {
-        return cache.match(request).then(function(mathing) {
-            return mathing || Promise.reject("no-match");
-        });
-    });
-}
-
-function update(request) {
-    return caches.open(cacheName).then(function (cache) {
-        return fetch(request).then(function(response) {
-            return cache.put(request, response);
-        });
-    });
-}
          
