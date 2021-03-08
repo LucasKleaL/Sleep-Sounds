@@ -41,6 +41,7 @@ self.addEventListener("activate", evt => {
     )
 })
 
+/*
 self.addEventListener("fetch", evt => {
 
     if (!(evt.request.url.indexOf('http') === 0)) {
@@ -72,4 +73,4 @@ const limitCacheSize = (name, size) => {
         })
     })
 }
-         
+*/         
