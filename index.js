@@ -6,7 +6,7 @@ async function registerServiceWorker() { //responsavel por registrar e chamar o 
     if ('serviceWorker' in navigator) {
         try{
             window.addEventListener("load", function() {
-                navigator.serviceWorker.register("~sw.js");
+                navigator.serviceWorker.register("/js/sw.js");
             })
             console.log("Server Worker registrated.")
         }
