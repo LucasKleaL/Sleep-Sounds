@@ -1,5 +1,5 @@
 
- const cacheName = "pwa-cache";
+ const cacheName = "pwa-cache2";
 
 self.addEventListener("install", evt => {
     evt.waitUntil(
@@ -75,6 +75,7 @@ self.addEventListener("fetch", function(evt) {
             caches.open(cacheName).then(function(cache) {
 
                 cache.put(e.request, responseClone);
+                limitCacheSize(cacheName, 100);
                 return response;
 
             })
@@ -82,8 +83,20 @@ self.addEventListener("fetch", function(evt) {
         })
         .catch(function(err) {
             console.log("[ServiceWorker] Error Fetching & Caching new version.")
+            caches.match("/fallback")
         })
 
     )
 })
+
+//cache size limit function
+const limitCacheSize = (name, size) => {
+    caches.open(name).then(cache => {
+        cache.keys().then(keys => {
+            if (keys.length > size) {
+                cache.delete(keys[0]).then(limitCacheSize(name, size));
+            }
+        })
+    })
+}
        
