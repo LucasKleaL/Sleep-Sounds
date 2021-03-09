@@ -50,6 +50,10 @@ self.addEventListener("activate", function(evt) {
 self.addEventListener("fetch", function(evt) {
     console.log("[ServiceWorker] Fetching", evt.request.url);
 
+    if (!(evt.request.url.indexOf('http') === 0)) {
+        return;
+    } 
+
     evt.respondWith(
 
         caches.match(evt.request).then(function(response) {
