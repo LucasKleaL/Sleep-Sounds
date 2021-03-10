@@ -1,36 +1,68 @@
+self.addEventListener("activate", function(evt) {
+    console.log("[ServiceWorker] Activated")
 
-self.addEventListener("activate", evt => {
     evt.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.all(keys
-                .filter(key => key !== cacheName)
-                .map(key => caches.delete(key))
-            )
+
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(cacheNames.map(function(thisCacheName) {
+
+                if (thisCacheName !== cacheName) {
+                    console.log("[ServiceWorker] Removing cached files from", thisCacheName);
+                    return caches.delete(thisCacheName);
+                }
+
+            }))
         })
+
     )
 })
 
-
-self.addEventListener("fetch", evt => {
+self.addEventListener("fetch", function(evt) {
+    console.log("[ServiceWorker] Fetching", evt.request.url);
 
     if (!(evt.request.url.indexOf('http') === 0)) {
         return;
     } 
-    else {
-        evt.respondWith(
-            caches.match(evt.request).then(cacheRes => {
-                return cacheRes || fetch(evt.request).then(fetchRes => {
-                    return caches.open(dynamicNames).then(cache => {
-                        cache.put(evt.request.url, fetchRes.clone());
-                        limitCacheSize(dynamicNames, 75);
-                        return fetchRes;
-                    })
-                });
+
+    evt.respondWith(
+
+        caches.match(evt.request).then(function(response) {
+
+            if (response) {
+                console.log("[ServiceWorker] Found in cache", evt.request.url);
+                return response;
+            }
+
+            var requestClone = evt.request.clone();
+
+            fetch(requestClone)
+                .then(function(response) {
+
+                    if (!response) {
+                        console.log("[ServicerWorker] No response from fetch")
+                        return response;
+                    }
+
+                })
+
+            var responseClone = response.clone();
+
+            caches.open(cacheName).then(function(cache) {
+
+                cache.put(e.request, responseClone);
+                limitCacheSize(cacheName, 100);
+                return response;
+
             })
-            .catch(() => caches.match("/fallback"))
-        );
-    }
-});
+
+        })
+        .catch(function(err) {
+            console.log("[ServiceWorker] Error Fetching & Caching new version.")
+            caches.match("/fallback")
+        })
+
+    )
+})
 
 //cache size limit function
 const limitCacheSize = (name, size) => {
