@@ -40,6 +40,9 @@ header button {
     height: 50rem;
     width: 100%;
     align-self: center;
+    
+    flex-direction: row;
+    justify-content: center;
     align-content: center;
     align-items: center;
     text-align: center;
@@ -177,22 +180,25 @@ header button {
 .div-share-inactive {
     height: 8rem;
     width: 15rem;
-    background-color: #1F1B24;
+    background-color: transparent;
     border-radius: 10px;
-    float: right;
-    margin-right: -250px;
+    margin-top: 7.3rem;
+    position: absolute;
+    left:50%;
+    margin-left: -7.5rem;
 }
 
 .div-share {
     height: 8rem;
     width: 15rem;
-    background-color: #1F1B24;
+    background-color: var(--dark2-background);
     border-radius: 10px;
-    float: right;
-    margin-right: 6.5rem;
-    margin-top: 7rem;
-
     text-align: center;
+    margin-top: 7.3rem;
+    position: absolute;
+    left:50%; /* Auto centralização utilizando absolute, left e margin-left */
+    margin-left: -7.5rem; /* Metade do tamanho total da div */
+
 }
 
 .div-share > h1 {
