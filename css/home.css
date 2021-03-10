@@ -173,3 +173,43 @@ header button {
     height: 7rem;
     border-radius: 50%;
 }
+
+.div-share-inactive {
+    height: 8rem;
+    width: 15rem;
+    background-color: #1F1B24;
+    border-radius: 10px;
+    float: right;
+    margin-right: -250px;
+}
+
+.div-share {
+    height: 8rem;
+    width: 15rem;
+    background-color: #1F1B24;
+    border-radius: 10px;
+    float: right;
+    margin-right: 6.5rem;
+    margin-top: 7rem;
+
+    text-align: center;
+}
+
+.div-share > h1 {
+    font-family: arial;
+    font-size: bold;
+    padding-top: 1rem;
+}
+
+
+
+.div-share > a {
+    cursor: pointer;
+}
+
+.div-share > a > img {
+    width: 3.3rem;
+    height: 3.3rem;
+    border-radius: 50%;
+    margin-top: 1rem;
+}

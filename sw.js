@@ -22,6 +22,9 @@ self.addEventListener("install", evt => {
                 "./public/img/ioga_icon.png",
                 "./public/img/meditation_icon.png",
                 "./public/img/sleep_icon.png",
+                "./public/img/facebook_icon.png",
+                "./public/img/twitter_icon.png",
+                "./public/img/whatsapp_icon.png",
             ])
         })
     )

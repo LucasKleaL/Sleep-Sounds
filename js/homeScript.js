@@ -1,4 +1,5 @@
 
+var shareIsActive = false;
 var arrayContent = [["smooth_rain.png", "smoothRain.mp3"], ["heavy_rain.png", "heavyRain.mp3"], ["heavy_thunder_rain.png", "thunderRain.mp3"]]
 var soundActive = false;
 var actualSound = 0;
@@ -135,5 +136,18 @@ function previousSound() {
     var img = document.getElementById("playButtonImg");
     soundActive = false;
     img.src = "public/img/play_button.png";
+
+}
+
+function shareMenu() { //responsavel por ativar e desativar a div com os botões de compartilhar
+
+    if (shareIsActive === false) {
+        shareIsActive = true;
+        $("#divShare").removeClass("div-share-inactive").addClass("div-share");
+    }
+    else {
+        shareIsActive = false;
+        $("#divShare").removeClass("div-share").addClass("div-share-inactive");
+    }
 
 }
