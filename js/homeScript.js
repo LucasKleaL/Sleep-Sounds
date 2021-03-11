@@ -34,32 +34,14 @@ function playerGenerator() {
 
     content += "</div>"
         
-
     $(".player-content").append(content);
-    console.log("generator finalizado")
+    
 }
 
 function playSound() { /* Responsável pelo botão de play/pause */ 
 
     var sound = document.getElementById("audioControl");
-    var img = document.getElementById("playButtonImg");
-
-    /*
-    if (sound.duration > 0 && !sound.paused) {
-
-        soundActive = false;
-        sound.pause();
-        img.src = "public/img/play_button.png";
-
-    } else {
-
-        sound.play();
-        soundActive = true;
-        img.src = "public/img/pause_button.png";
-
-    }
-    */
-    
+    var img = document.getElementById("playButtonImg");    
     
     if (soundActive === false){
         sound.play();
@@ -111,11 +93,9 @@ function previousSound() {
 
     if (actualSound === 0){
         actualSound = arrayContent.length - 1;
-        console.log(actualSound)
     }
     else {
         actualSound -= 1;
-        console.log(actualSound)
     }
     
     /* Função para trocar o wallpaper do player */ 
@@ -163,8 +143,8 @@ function shareMenu() { //responsavel por ativar e desativar a div com os botões
     }
     else {
         shareIsActive = false;
+
         $("#divShare").removeClass("div-share").addClass("div-share-inactive");
-        
         $("#divShare").html("");
 
     }
