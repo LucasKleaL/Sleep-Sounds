@@ -128,13 +128,13 @@ function shareMenu() { //responsavel por ativar e desativar a div com os botões
         var shareContent = '';
 
         shareContent += '<h1>Share this app.</h1>';
-        shareContent += '<a href="https://www.facebook.com/sharer/sharer.php?u=https://lucaskleal.github.io/Sleep-Sounds/">';
+        shareContent += '<a href="https://www.facebook.com/sharer/sharer.php?u=https://sleepsounds.site/">';
         shareContent += '<img src="public/img/facebook_icon.png" alt="Facebook" style="margin-right: 0.5rem;">';
         shareContent += '</a>';
-        shareContent += '<a href="https://api.whatsapp.com/send?text=https://lucaskleal.github.io/Sleep-Sounds/">';
+        shareContent += '<a href="https://api.whatsapp.com/send?text=https://sleepsounds.site/">';
         shareContent += '<img src="public/img/whatsapp_icon.png" alt="Whatsapp">';
         shareContent += '</a>';
-        shareContent += '<a href="http://www.twitter.com/share?url=https://lucaskleal.github.io/Sleep-Sounds/"">';
+        shareContent += '<a href="http://www.twitter.com/share?url=https://sleepsounds.site/"">';
         shareContent += '<img src="public/img/twitter_icon.png" alt="Twitter" style="margin-left: 0.5rem;">';
         shareContent += '</a>';
         
