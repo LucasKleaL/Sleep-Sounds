@@ -154,8 +154,8 @@ function shareMenu() { //responsavel por ativar e desativar a div com os botões
 
 /* Parte responsavel pelo banner de instalação */ 
        
-function pwaTrackingListeners() {
-    const fireAddToHomeScreenImpression = event => {
+    const pwaTrackingListeners = () => {
+        const fireAddToHomeScreenImpression = event => {
         fireTracking("Add to homescreen shown");
         //will not work for chrome, untill fixed
         event.userChoice.then(choiceResult => {
@@ -166,16 +166,16 @@ function pwaTrackingListeners() {
             "beforeinstallprompt",
             fireAddToHomeScreenImpression
         );
-    };
-    window.addEventListener("beforeinstallprompt", fireAddToHomeScreenImpression);
-
-    //Track web app install by user
-    window.addEventListener("appinstalled", event => {
+        };
+        window.addEventListener("beforeinstallprompt", fireAddToHomeScreenImpression);
+        
+        //Track web app install by user
+        window.addEventListener("appinstalled", event => {
         fireTracking("PWA app installed by user!!! Hurray");
-    });
-
-    //Track from where your web app has been opened/browsed
-    window.addEventListener("load", () => {
+        });
+    
+        //Track from where your web app has been opened/browsed
+        window.addEventListener("load", () => {
         let trackText;
         if (navigator && navigator.standalone) {
             trackText = "Launched: Installed (iOS)";
@@ -185,5 +185,5 @@ function pwaTrackingListeners() {
             trackText = "Launched: Browser Tab";
         }
         fireTracking(track);
-    });
-}
+        });
+  };
