@@ -31,4 +31,5 @@ function iosPwaPopup() {
       if (isIos() && !isInStandaloneMode()) {
         this.setState({ showInstallMessage: true });
 
-} 
+    } 
+}
