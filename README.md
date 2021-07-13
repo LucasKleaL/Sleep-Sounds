@@ -13,7 +13,7 @@ You can access this application on: https://sleepsounds.site/
 
 #### Sleep Sounds on Mobile 📱
 
-<img alt="Sleep Sounds on Mobile" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroid1.jpg">
-<img alt="Sleep Sounds on Mobile" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroid2.jpg">
-<img alt="Sleep Sounds added on Mobile screen" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroidWallpaper.jpg">
+<img width="50%" height="50%" alt="Sleep Sounds on Mobile" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroid1.jpg">
+<img width="50%" height="50%" alt="Sleep Sounds on Mobile" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroid2.jpg">
+<img width="50%" height="50%" alt="Sleep Sounds added on Mobile screen" src="https://github.com/LucasKleaL/Sleep-Sounds/blob/main/public/readme/SleepSoundsAndroidWallpaper.jpg">
 
